@@ -41,24 +41,23 @@ int main(int argc, char *argv[])
     insert_node(&root, 13);
     insert_node(&root, 0);
     insert_node(&root, 12);
-    insert_node(&root, 5);
 
-
-    //print_tree(root, 0);
     dot_fmt(file, root);
 
-    /*
-    printf("Find node: ");
-    int value = 0;
-    scanf("%d", &value);
+    printf("The lowest value of a node is %d\n", lesser_node(root)->value);
 
-    Node *aux = find_node(root, value);
+    FILE *depois = fopen("depois.dot", "w");
 
-    if (aux == NULL)
-        printf("%d Not found\n", value);
-    else
-        printf("%d Found\n", value);
-    */
+    if (depois == NULL) {
+        printf("File not open\n");
+        return 1;
+    }
+
+    remove_node(root, 0);
+    remove_node(root, 1);
+    printf("The lowest value of a node is %d\n", lesser_node(root)->value);
+
+    dot_fmt(depois, root);
 
     return 0;
 }
