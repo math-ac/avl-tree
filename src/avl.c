@@ -53,6 +53,15 @@ void insert_node(Node **root, int value)
     }
 }
 
+void random_tree(Node **root, int n)
+{
+    time_t seed = time(0);
+    srand(seed);
+
+    for (int i = 0; i < n; i++)
+        insert_node(root, rand() % 100);
+}
+
 Node *remove_node(Node *root, int value)
 {
     if (root == NULL) {

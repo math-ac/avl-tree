@@ -4,20 +4,16 @@
  * AVL balanced tree implementation
  */
 
-#include <time.h>
-
 #include "avl.h"
-
-#define NUMBER_NODES 10
 
 void usage()
 {
+    //TODO
     printf("./avl <FILENAME>\n");
 }
 
 int main(int argc, char *argv[])
 {
-    time_t seed = time(0);
     Node *root = NULL;
 
     FILE *file = fopen("avl.dot", "w");
@@ -27,11 +23,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    srand(seed);
-
-    for (int i = 0; i < NUMBER_NODES; i++)
-        insert_node(&root, rand() % 1000);
-
+    random_tree(&root, 10);
     dot_fmt(file, root);
 
     return 0;
