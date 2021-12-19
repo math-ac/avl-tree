@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
     dot_fmt(file, root);
 
-    printf("The lowest value of a node is %d\n", lesser_node(root)->value);
+    printf("The lowest value of a node is %d\n", lowest_node(root)->value);
 
     FILE *depois = fopen("depois.dot", "w");
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
     remove_node(root, 0);
     remove_node(root, 1);
-    printf("The lowest value of a node is %d\n", lesser_node(root)->value);
+    printf("The lowest value of a node is %d\n", lowest_node(root)->value);
 
     dot_fmt(depois, root);
 

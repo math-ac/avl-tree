@@ -13,7 +13,7 @@ Node *new_node(int value)
     return aux;
 }
 
-Node *lesser_node(Node *root)
+Node *lowest_node(Node *root)
 {
     Node *aux = root;
 
@@ -62,27 +62,28 @@ Node *remove_node(Node *root, int value)
     } else if (value > root->value) {
         root->right = remove_node(root->right, value);
     } else {
-            if (!root->left && !root->right) {
-                free(root);
-                return NULL;
-            } else if (!root->left) {
-                Node *tmp = root->right;
-                free(root);
-                return tmp;
-            } else if (!root->right) {
-                Node *tmp = root->left;
-                free(root);
-                return tmp;
-            } else {
-                Node *tmp = lesser_node(root->right);
-                root->value = tmp->value;
-                root->right = remove_node(root->right, tmp->value);
-            }
+        if (!root->left && !root->right) {
+            free(root);
+            return NULL;
+        } else if (!root->left) {
+            Node *tmp = root->right;
+            free(root);
+            return tmp;
+        } else if (!root->right) {
+            Node *tmp = root->left;
+            free(root);
+            return tmp;
+        } else {
+            Node *tmp = lowest_node(root->right);
+            root->value = tmp->value;
+            root->right = remove_node(root->right, tmp->value);
+        }
     }
+
     return root;
 }
 
-int greatest(int a, int b)
+int greatest_int(int a, int b)
 {
     return (a > b) ? a : b;
 }
@@ -97,13 +98,11 @@ int tree_height(Node *root)
     } else {
         h_left = tree_height(root->left) + 1;
         h_right = tree_height(root->right) + 1;
-
-        height = greatest(h_left, h_right);
+        height = greatest_int(h_left, h_right);
     }
 
     return height;
 }
-
 
 void print_tree(Node *root, int level)
 {

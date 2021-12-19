@@ -12,11 +12,11 @@ struct Node {
 };
 
 Node *new_node(int value);
-Node *lesser_node(Node *root);
+Node *lowest_node(Node *root);
 Node *find_node(Node *root, int value);
 void insert_node(Node **root, int value);
 Node *remove_node(Node *root, int value);
-int greatest(int a, int b);
+int greatest_int(int a, int b);
 int tree_height(Node *root);
 void print_tree(Node *root, int level);
 
