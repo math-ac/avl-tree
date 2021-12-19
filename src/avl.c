@@ -2,41 +2,41 @@
 
 Node *new_node(int value)
 {
-    Node *aux;
-    aux = malloc(sizeof(struct Node));
-    assert(aux);
-    aux->value = value;
-    aux->height = 0;
-    aux->left = NULL;
-    aux->right = NULL;
+    Node *tmp;
+    tmp = malloc(sizeof(struct Node));
+    assert(tmp);
+    tmp->value = value;
+    tmp->height = 0;
+    tmp->left = NULL;
+    tmp->right = NULL;
 
-    return aux;
+    return tmp;
 }
 
 Node *lowest_node(Node *root)
 {
-    Node *aux = root;
+    Node *tmp = root;
 
-    while (aux->left != NULL)
-        aux = aux->left;
+    while (tmp->left != NULL)
+        tmp = tmp->left;
 
-    return aux;
+    return tmp;
 }
 
 Node *find_node(Node *root, int value)
 {
-    Node *aux = NULL;
+    Node *tmp = NULL;
 
     if (root == NULL)
-        aux = NULL;
+        tmp = NULL;
     else if (value < root->value)
-        aux = find_node(root->left, value);
+        tmp = find_node(root->left, value);
     else if (value > root->value)
-        aux = find_node(root->right, value);
+        tmp = find_node(root->right, value);
     else if (value == root->value)
-        aux = root;
+        tmp = root;
 
-    return aux;
+    return tmp;
 }
 
 void insert_node(Node **root, int value)
@@ -97,6 +97,14 @@ int greatest_int(int a, int b)
     return (a > b) ? a : b;
 }
 
+int node_height(Node *node)
+{
+    if (!node)
+        return -1;
+    else
+        return node->height;
+}
+
 int tree_height(Node *root)
 {
     int height = 0;
@@ -113,11 +121,19 @@ int tree_height(Node *root)
     return height;
 }
 
+int balance(Node *node)
+{
+    if (!node)
+        return 0;
+    else
+        return node_height(node->left) - node_height(node->right);
+}
+
 void print_tree(Node *root, int level)
 {
-    Node *aux = root;
+    Node *tmp = root;
 
-    if (aux == NULL) {
+    if (tmp == NULL) {
         for (int i = 0; i < level; i++) {
             printf("\t");
         }

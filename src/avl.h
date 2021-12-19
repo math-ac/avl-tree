@@ -19,6 +19,7 @@ void insert_node(Node **root, int value);
 void random_tree(Node **root, int n);
 Node *remove_node(Node *root, int value);
 int greatest_int(int a, int b);
+int node_height(Node *node);
 int tree_height(Node *root);
 void print_tree(Node *root, int level);
 
